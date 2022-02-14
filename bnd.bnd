@@ -1,0 +1,5 @@
+Bundle-Name: [OpenK9 - Plugin] Test
+Bundle-SymbolicName: io.openk9.plugins.test
+Bundle-Version: 0.0.1
+
+-noimportjava: true

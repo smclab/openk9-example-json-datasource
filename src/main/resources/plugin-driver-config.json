@@ -1,0 +1,73 @@
+{
+  "name": "example",
+  "schedulerEnabled": true,
+  "type": "HTTP",
+  "options": {
+    "url": "http://example-parser/",
+    "path": "/execute",
+    "method": "POST",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonKeys": [
+      "timestamp",
+      "startUrls",
+      "allowedDomains",
+      "allowedPaths",
+      "datasourceId",
+      "excludedPaths",
+      "bodyTag"
+    ]
+  },
+  "documentTypes": [
+    {
+      "name": "web",
+      "icon": "",
+      "defaultDocumentType": true,
+      "searchKeywords": [
+        {
+          "type": "TEXT",
+          "keyword": "web.title",
+          "options": {
+            "boost": 10.0
+          }
+        },
+        {
+          "type": "TEXT",
+          "keyword": "web.content"
+        }
+      ],
+      "mappings": {
+        "properties": {
+          "web": {
+            "properties": {
+              "title": {
+                "type": "text",
+                "analyzer": "standard_lowercase_italian_stop_words_filter"
+              },
+              "content": {
+                "type": "text",
+                "analyzer": "standard_lowercase_italian_stop_words_filter"
+              },
+              "url": {
+                "type": "text"
+              },
+              "favicon": {
+                "type": "text"
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "enrichProcessors": [
+    {
+      "name": "example-ner",
+      "type": "ASYNC",
+      "options": {
+        "destinationName": "io.openk9.ner"
+      }
+    }
+  ]
+}
